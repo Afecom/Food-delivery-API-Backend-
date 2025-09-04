@@ -1,15 +1,18 @@
-import { createRestaurant, listRestaurants, listRestaurantsById, updateRestaurant, deleteRestaurant } from '../controllers/restaurant.controller.js'
-import initModel from '../models/index.model.js'
-import { devSequelize } from '../configs/sequelize.config.js'
-const models = initModel(devSequelize)
+import { createRestaurant, listRestaurants, listRestaurantsById, updateRestaurant, deleteRestaurant, createMenuItem, listMenuItem } from '../controllers/restaurant.controller.js'
 import { Router } from 'express'
 
-const restaurantRouter = Router()
+const restaurantRouter = (models) => {
+    const router = Router()
 
-restaurantRouter.post('/', createRestaurant(models))
-restaurantRouter.get('/', listRestaurants(models))
-restaurantRouter.get('/:id', listRestaurantsById(models))
-restaurantRouter.patch('/:id', updateRestaurant(models))
-restaurantRouter.delete('/:id', deleteRestaurant(models))
+    router.post('/', createRestaurant(models))
+    router.get('/', listRestaurants(models))
+    router.get('/:id', listRestaurantsById(models))
+    router.patch('/:id', updateRestaurant(models))
+    router.delete('/:id', deleteRestaurant(models))
+    router.post('/:id/menu', createMenuItem(models))
+    router.get('/:id/menu', listMenuItem(models))
+
+    return router
+}
 
 export default restaurantRouter

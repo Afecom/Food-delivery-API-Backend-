@@ -17,3 +17,11 @@ export const updateRestaurant = (models) => {
 export const deleteRestaurant = (models) => {
     return async (req, res) => {}
 }
+
+export const createMenuItem = (models) => {
+    return async (req, res) => {}
+}
+
+export const listMenuItem = (models) => {
+    return async (req, res) => {}
+}
