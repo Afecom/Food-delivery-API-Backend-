@@ -1,20 +1,24 @@
 import { Model, DataTypes} from "sequelize";
 
 export default (sequelize) => {
-    class Menu_item extends Model{
+    class Order extends Model{
         static associate(models){
-            Menu_item.hasMany(models.Order_item, {
-                foreignKey: "menu_item_id",
+            Order.hasMany(models.Order_item, {
+                foreignKey: "order_id",
                 as: "order_items"
             })
-            Menu_item.belongsTo(models.Restaurant, {
+            Order.belongsTo(models.Restaurant, {
                 foreignKey: "restaurant_id",
                 as: "restaurant"
+            })
+            Order.belongsTo(models.User, {
+                foreignKey: "user_id",
+                as: "user"
             })
         }
     }
 
-    Menu_item.init({
+    Order.init({
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -40,9 +44,9 @@ export default (sequelize) => {
     }, {
         sequelize,
         timestamps: true,
-        modelName: "Menu_item",
-        tableName: "Menu_items"
+        modelName: "Order",
+        tableName: "Orders"
     })
 
-    return Menu_item
+    return Order
 }
