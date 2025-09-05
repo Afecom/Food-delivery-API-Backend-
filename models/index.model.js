@@ -8,9 +8,9 @@ import userModel from "./user.model.js"
 const initModel = (sequelize) => {
     const models = {
         Address: addressModel(sequelize),
-        MenuItem: menuItemsModel(sequelize),
+        Menu_item: menuItemsModel(sequelize),
         Order: orderModel(sequelize),
-        OrderItem: orderItemModel(sequelize),
+        Order_item: orderItemModel(sequelize),
         Restaurant: restaurantModel(sequelize), 
         User: userModel(sequelize)
     }

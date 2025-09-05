@@ -11,7 +11,7 @@ export default (sequelize) => {
             foreignKey: "restaurant_id",
             as: "addresses"
         })
-        Restaurant.hasMany(models.Orders, {
+        Restaurant.hasMany(models.Order, {
             foreignKey: "restaurant_id",
             as: "orders"
         })

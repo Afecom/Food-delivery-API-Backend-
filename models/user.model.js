@@ -22,8 +22,8 @@ export default (sequelize) => {
             allowNull: false
         },
         first_name: {
-                    type: DataTypes.TEXT,
-                    allowNull: false
+            type: DataTypes.TEXT,
+            allowNull: false
         },
         last_name: {
             type: DataTypes.TEXT,
@@ -45,7 +45,7 @@ export default (sequelize) => {
             type: DataTypes.ENUM,
             values: ["Customer", "Admin"],
             defaultValue: "Customer",
-            allowNull: false,
+            allowNull: true,
         }
     }, {
         sequelize,

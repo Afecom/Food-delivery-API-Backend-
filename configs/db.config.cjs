@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config()
+require('dotenv').config()
 
 module.exports = {
     development: {
@@ -7,8 +7,12 @@ module.exports = {
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
         port: process.env.DB_PORT || 5432,
+        dialect: "postgres",
+    },
+    production: {
         dialect: "postgres"
     },
-    production: {},
-    test: {},
+    test: {
+        dialect: "sqlite"
+    },
 }
