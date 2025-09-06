@@ -5,7 +5,7 @@ export default (sequelize) => {
         static associate(models){
             Order.hasMany(models.Order_item, {
                 foreignKey: "order_id",
-                as: "order_items"
+                as: "order_item"
             })
             Order.belongsTo(models.Restaurant, {
                 foreignKey: "restaurant_id",
@@ -34,6 +34,14 @@ export default (sequelize) => {
             allowNull: false,
             references: {
                 model: "Restaurant",
+                key: "id"
+            }
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: "User",
                 key: "id"
             }
         },

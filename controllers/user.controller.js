@@ -22,7 +22,38 @@ export const list_users = (models) => {
     }
 } 
 export const list_users_by_id = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const user_model = models['User']
+        const order_model = models['Order']
+        const address_model = models['Address']
+        const order_item_model = models['Order_item']
+        const menu_item_model = models['Menu_item']
+        const id = req.params.id
+        try {
+            const user = await user_model.findOne({
+                where: { id },
+                include: [
+                    {model: order_model, as: "orders", include: [
+                        {model: order_item_model, as: "order_item", include: [
+                            {model: menu_item_model, as: "menu_item"}
+                        ]}
+                    ]},
+                    {model: address_model, as: "addresses"}
+                ]
+            })
+            if(!user) return res.status(404).json({message: "User not found"})
+            const {password: pwd, ...rst_user} = user.toJSON()
+            res.status(200).json({
+                message: "User fetched successfully",
+                User: rst_user
+            })
+        } catch (error) {
+            res.status(400).json({
+                message: "Couldn't get user",
+                error: error.message || error
+            })
+        }
+    }
 } 
 export const update_user = (models) => {
     return async (req, res) => {}

@@ -7,8 +7,8 @@ export default (sequelize) => {
                 foreignKey: "order_id",
                 as: "order"
             })
-            Order_item.belongsTo(models.Menu_item, {
-                foreignKey: "menu_item_id",
+            Order_item.hasMany(models.Menu_item, {
+                foreignKey: "order_item_id",
                 as: "menu_item"
             })
         }
@@ -25,11 +25,11 @@ export default (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        restaurant_id: {
+        order_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: "Restaurant",
+                model: "Order",
                 key: "id"
             }
         },
@@ -40,8 +40,8 @@ export default (sequelize) => {
     }, {
         sequelize,
         timestamps: true,
-        modelName: "Order",
-        tableName: "Orders"
+        modelName: "Order_item",
+        tableName: "Order_items"
     })
 
     return Order_item

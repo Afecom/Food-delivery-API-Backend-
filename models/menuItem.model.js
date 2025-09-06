@@ -3,8 +3,8 @@ import { Model, DataTypes} from "sequelize";
 export default (sequelize) => {
     class Menu_item extends Model{
         static associate(models){
-            Menu_item.hasMany(models.Order_item, {
-                foreignKey: "menu_item_id",
+            Menu_item.belongsTo(models.Order_item, {
+                foreignKey: "order_item_id",
                 as: "order_items"
             })
             Menu_item.belongsTo(models.Restaurant, {
