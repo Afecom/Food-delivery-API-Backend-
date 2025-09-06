@@ -1,6 +1,7 @@
 import argon from 'argon2'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import verify_token from '../utils/tokenChecker.js'
 dotenv.config()
 
 export const signUp = (models) => {
@@ -66,7 +67,7 @@ export const login = (models) => {
 export const refreshToken = (req, res) => {
     const header = req.headers
     const refresh_token = header['authorization'].split(" ")[1]
-    const token = verify_token(refresh_token)
+    const token = verify_token(refresh_token, "refresh")
     if(!token) return res.status(401).json({message: "Invalid token"})
     const access_token = jwt.sign({user_id: token.user_id, user_role: token.user_role}, process.env.JWT_ACCESS_SECRET, {expiresIn: "15m"})
     res.status(201).json({
@@ -75,11 +76,3 @@ export const refreshToken = (req, res) => {
     })
 }
 
-function verify_token(token){
-    try {
-        const is_valid_token = jwt.verify(token, process.env.JWT_REFRESH_SECRET)
-        return is_valid_token
-    } catch (error) {
-        return null
-    }
-}
