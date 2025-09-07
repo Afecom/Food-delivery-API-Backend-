@@ -29,7 +29,7 @@ export const isTheSameUser = (role) => {
     if(!token) return res.status(401).json({message: "Token invalid"})
     const user_id = token.user_id
     const user_role = token.user_role
-    if (id !== user_id || user_role !== role) return res.status(403).json({message: "Unauthorized to access the resource"})
-    next()
+    if (id === user_id || user_role === role) return next()
+    res.status(403).json({message: "Unauthorized to access the resource"})
 }
 } 
