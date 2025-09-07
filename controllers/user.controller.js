@@ -81,5 +81,22 @@ export const update_user = (models) => {
     }
 } 
 export const delete_user = (models) => {
-    return async(req, res) => {}
+    return async(req, res) => {
+        const id = req.params.id
+        const user_model = models['User']
+        try {
+            const user = await user_model.findByPk(id)
+            if(!user) return res.status(404).json({message: "User not found with the ID provided"})
+            const deleted = await user.destroy()
+            res.status(203).json({
+                message: "User deleted successfully",
+                user: deleted
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't delete the user",
+                error: error.message || error
+            })
+        }
+    }
 } 
