@@ -7,7 +7,7 @@ const userRouter = (models) => {
 
     router.get('/', isAuthorized("Admin"), list_users(models))
     router.get('/:id', isTheSameUser("Admin"), list_users_by_id(models))
-    router.patch('/:id', update_user(models))
+    router.patch('/:id', isTheSameUser("Admin"), update_user(models))
     router.delete('/:id', delete_user(models))
     
     return router

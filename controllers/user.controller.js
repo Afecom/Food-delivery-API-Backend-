@@ -56,7 +56,29 @@ export const list_users_by_id = (models) => {
     }
 } 
 export const update_user = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const body = req.body
+        const allowed = ["first_name", "last_name"]
+        const updates = Object.fromEntries(
+            Object.entries(body).filter(([key]) => allowed.includes(key))
+        )
+        const id = req.params.id
+        const user_model = models['User']
+        try {
+            const user = await user_model.findByPk(id)
+            if(!user) return res.status(404).json({message: "User not found with the ID provided"})
+            await user.update(updates)
+            res.status(201).json({
+                message: "User updated successfully",
+                user: user
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't update the user",
+                error: error.message || error
+            })
+        }
+    }
 } 
 export const delete_user = (models) => {
     return async(req, res) => {}
