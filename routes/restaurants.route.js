@@ -4,12 +4,13 @@ import { Router } from 'express'
 
 const restaurantRouter = (models) => {
     const router = Router()
+    const admin_auth = isAuthorized("Admin")
 
-    router.post('/', isAuthorized("Admin"), createRestaurant(models))
+    router.post('/', admin_auth, createRestaurant(models))
     router.get('/', listRestaurants(models))
     router.get('/:id', listRestaurantsById(models))
-    router.patch('/:id', updateRestaurant(models))
-    router.delete('/:id', deleteRestaurant(models))
+    router.patch('/:id', admin_auth, updateRestaurant(models))
+    router.delete('/:id', admin_auth, deleteRestaurant(models))
     router.post('/:id/menu', createMenuItem(models))
     router.get('/:id/menu', listMenuItem(models))
 
