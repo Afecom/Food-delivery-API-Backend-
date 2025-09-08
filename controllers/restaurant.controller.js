@@ -19,7 +19,22 @@ export const createRestaurant = (models) => {
 }
 
 export const listRestaurants = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const restaurant_model = models['Restaurant']
+        try {
+            const restaurants = await restaurant_model.findAll()
+            if(!restaurants) return res.status(404).json({message: "Couln't find any restaurant"})
+            res.status(200).json({
+                message: "Restaurants fetched successfully",
+                Restaurants: restaurants
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't fetch restaurants",
+                error: error.message || error
+            })
+        }
+    }
 }
 
 export const listRestaurantsById = (models) => {
