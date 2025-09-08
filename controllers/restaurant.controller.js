@@ -138,5 +138,23 @@ export const createMenuItem = (models) => {
 }
 
 export const listMenuItem = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const id = req.params.id
+        const menu_item_model = models['Menu_item']
+        try {
+            const menu_items = await menu_item_model.findAll({
+                where: {restaurant_id: id}
+            })
+            if(!menu_items) return res.status(404).json({message: "Menu item not found"})
+            res.status(200).json({
+                message: "Menu items fetched successfully",
+                menu_items
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't fetch the menu items from the restaurant",
+                error: error.message || error
+            })
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import { createRestaurant, listRestaurants, listRestaurantsById, updateRestaurant, deleteRestaurant, createMenuItem, listMenuItem } from '../controllers/restaurant.controller.js'
-import { isAuthorized, isLoggedIn } from '../middlewares/auth.middleware.js'
+import { isAuthorized } from '../middlewares/auth.middleware.js'
 import { Router } from 'express'
 
 const restaurantRouter = (models) => {
@@ -11,7 +11,7 @@ const restaurantRouter = (models) => {
     router.get('/:id', listRestaurantsById(models))
     router.patch('/:id', admin_auth, updateRestaurant(models))
     router.delete('/:id', admin_auth, deleteRestaurant(models))
-    router.post('/:id/menu', createMenuItem(models))
+    router.post('/:id/menu', admin_auth, createMenuItem(models))
     router.get('/:id/menu', listMenuItem(models))
 
     return router
