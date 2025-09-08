@@ -117,7 +117,24 @@ export const deleteRestaurant = (models) => {
 }
 
 export const createMenuItem = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const body = req.body
+        const id = req.params.id
+        const { name, price } = body
+        const menu_item_model = models['Menu_item']
+        try {
+            const menu_item = await menu_item_model.create({name, restaurant_id: id, price})
+            res.status(201).json({
+                Message: "Menu item created successfully",
+                Menu_item: menu_item
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't create a menu item for the restaurant",
+                error: error.message || error
+            })
+        }
+    }
 }
 
 export const listMenuItem = (models) => {

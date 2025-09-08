@@ -7,8 +7,8 @@ export default (sequelize) => {
                 foreignKey: "order_id",
                 as: "order"
             })
-            Order_item.hasMany(models.Menu_item, {
-                foreignKey: "order_item_id",
+            Order_item.belongsTo(models.Menu_item, {
+                foreignKey: "menu_item_id",
                 as: "menu_item"
             })
         }
@@ -36,6 +36,14 @@ export default (sequelize) => {
         price: {
             type: DataTypes.DECIMAL,
             allowNull: false
+        },
+        menu_item_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: "menu_item",
+                key: "id"
+            }
         }
     }, {
         sequelize,
