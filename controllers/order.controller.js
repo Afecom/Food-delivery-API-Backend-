@@ -58,11 +58,59 @@ export const listOrders = (models) => {
 }
 
 export const listOrderById = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const id = req.params.id
+        const order_model = models['Order']
+        const user_model = models['User']
+        const restaurant_model = models['Restaurant']
+        const order_item_model = models['Order_item']
+        const menu_item_model = models['Menu_item']
+        try {
+            const order = await order_model.findOne({
+                where: { id },
+                include: [
+                    {model: user_model, attributes: {exclude: ["password"]}, as: "user"},
+                    {model: restaurant_model, as: "restaurant"},
+                    {model: order_item_model, as: "order_item", include: {model: menu_item_model, as: "menu_item"}}
+                ]
+            })
+            if(!order) return res.status(404).json({message: "order not found"})
+            res.status(200).json({
+                message: "Order fetched successfully",
+                order: order
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't fetch order",
+                error: error.message || error
+            })
+        }
+    }
 }
 
 export const updateOrderStatus = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const id = req.params.id
+        const order_model = models['Order']
+        const { status } = req.body
+        const allowed = ["pending", "preparing", "delivered"]
+        if(!allowed.includes(status)) return res.status(400).json({message: "Please provide the correct status value. i.e (pending, preparing, delivered)"})
+        try {
+            const order = await order_model.findByPk(id)
+            if(!order) return res.status(404).json({message: "Order not found"})
+            order.status = status
+            await order.save()
+            res.status(200).json({
+                message: "Order status updated successfully",
+                order
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't update order status",
+                error: error.message || error
+            })
+        }
+    }
 }
 
 export const deleteOrder = (models) => {
