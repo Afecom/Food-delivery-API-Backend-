@@ -53,7 +53,7 @@ export const listRestaurantsById = (models) => {
                     {model: address_model, as: "addresses"},
                     {model: menu_item_model, as: "menu_items"},
                     {model: order_model, as: "orders", include: [
-                        {model: user_model, as: "user", include: {model: address_model, as: "addresses"}},
+                        {model: user_model, attributes: {exclude: ["password", "role", "createdAt", "updatedAt"]}, as: "user", include: {model: address_model, as: "addresses"}},
                         {model: order_item_model, as: "order_item", include: {model: menu_item_model, as: "menu_item"}}
                     ]}
                 ]
