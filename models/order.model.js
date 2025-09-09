@@ -25,10 +25,6 @@ export default (sequelize) => {
             primaryKey: true,
             allowNull: false
         },
-        name: {
-            type: DataTypes.TEXT,
-            allowNull: false
-        },
         restaurant_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -45,8 +41,10 @@ export default (sequelize) => {
                 key: "id"
             }
         },
-        price: {
-            type: DataTypes.DECIMAL,
+        status: {
+            type: DataTypes.ENUM,
+            values: ["pending", "preparing", "delivered"],
+            defaultValue: "pending",
             allowNull: false
         }
     }, {

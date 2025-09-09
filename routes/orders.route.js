@@ -1,10 +1,12 @@
 import { createOrder, listOrders, listOrderById, updateOrderStatus, deleteOrder,getOrderItem, updateQuantity, deleteItem } from '../controllers/order.controller.js'
+import { isAuthorized, isTheSameUser } from '../middlewares/auth.middleware.js'
 import { Router } from 'express'
+const customer_auth = isAuthorized("Customer")
 
 const orderRouter = (models) => {
     const router = Router()
 
-    router.post('/', createOrder(models))
+    router.post('/', customer_auth, createOrder(models))
     router.get('/', listOrders(models))
     router.get('/:id', listOrderById(models))
     router.patch('/:id/status', updateOrderStatus(models))
