@@ -114,7 +114,35 @@ export const updateOrderStatus = (models) => {
 }
 
 export const deleteOrder = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const id = req.params.id
+        const order_model = models['Order']
+        
+        try {
+            const order = await order_model.findByPk(id)
+            if(!order) return res.status(404).json({message: "order not found"})
+            const order_status = order.status
+            const access_token = req.headers['authorization'].split(" ")[1]
+            const token = verify_token(access_token, "access")
+            if(!token) return res.status(401).json({message: "Invalid token"})
+            const user_role = token.user_role
+            const user_id = token.user_id
+            if(order.user_id !== user_id && user_role !== "Admin") return res.status(403).json({message: "Couldn't cancel an order of another user"})
+            try {
+                if(user_role === "Admin" || order_status === "pending"){
+                    await order.destroy()
+                    return res.status(203).json({
+                        message: "Order canceled successfully",
+                    })
+                }
+                res.status(404).json({message: "Couldn't cancel order. requires admin priviledge or order status be still pending"})
+            } catch (error) {
+                
+            }
+        } catch (error) {
+            
+        }
+    }
 }
 
 export const getOrderItem = (models) => {
