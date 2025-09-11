@@ -4,13 +4,26 @@ export const createOrder = (models) => {
     return async (req, res) => {
         const body = req.body
         const order_model = models['Order']
-        const { user_id, restaurant_id } = body
-        console.log("user id: ", user_id, "restaurant id: ", restaurant_id)
+        const order_item_model = models['Order_item']
+        const { user_id, restaurant_id, items } = body
         try {
-            const order = await order_model.create({user_id, restaurant_id})
-            res.status(201).json({
+            const order = await order_model.create({
+                user_id,
+                restaurant_id,
+            })
+            const order_items = await Promise.all(
+                items.map(item => {
+                    order_item_model.create({
+                        order_id: order.id,
+                        menu_item_id: item.menu_item_id,
+                        quantity: item.quantity
+                    })
+                })
+            )
+            res.status(200).json({
                 message: "Order created successfully",
-                order
+                order,
+                order_items
             })
         } catch (error) {
             res.status(500).json({
@@ -140,17 +153,61 @@ export const deleteOrder = (models) => {
                 
             }
         } catch (error) {
-            
+            res.status(500).json({
+                message: "Couldn't cancel the order",
+                error: error.message || error
+            })
         }
     }
 }
 
 export const getOrderItem = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const id = req.params.id
+        const order_item_model = models['Order_item']
+        try {
+            const order_items = await order_item_model.findAll({
+                where: { order_id: id }
+            })
+            if(!order_items) return res.status(404).json({message: "order item not found"})
+            res.status(200).json({
+                message: "Order items fetched successfully",
+                order_items
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't fetch the order",
+                error: error.message || error
+            })
+        }
+    }
 }
 
 export const updateQuantity = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const { id, itemId } = req.params
+        const order_item_model = models['Order_item']
+        const { quantity } = req.body
+        try {
+            const order_item = await order_item_model.findOne({
+                where: {
+                    order_id: id,
+                    id: itemId
+                }
+            })
+            if(!order_item) return res.status(404).json({message: "Order not found"})
+            order_item.update({quantity})
+            res.status(200).json({
+                message: "Order item quantity updated successfully",
+                order_item
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't update the quantity of the item",
+                error: error.message || error
+            })
+        }
+    }
 }
 
 export const deleteItem = (models) => {

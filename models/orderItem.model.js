@@ -21,10 +21,6 @@ export default (sequelize) => {
             primaryKey: true,
             allowNull: false
         },
-        name: {
-            type: DataTypes.TEXT,
-            allowNull: false
-        },
         order_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -33,10 +29,6 @@ export default (sequelize) => {
                 key: "id"
             }
         },
-        price: {
-            type: DataTypes.DECIMAL,
-            allowNull: false
-        },
         menu_item_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -44,6 +36,10 @@ export default (sequelize) => {
                 model: "menu_item",
                 key: "id"
             }
+        },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }, {
         sequelize,
