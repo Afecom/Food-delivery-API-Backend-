@@ -187,15 +187,20 @@ export const updateQuantity = (models) => {
     return async (req, res) => {
         const { id, itemId } = req.params
         const order_item_model = models['Order_item']
+        const order_model = models['Order']
         const { quantity } = req.body
         try {
+            const order = await order_model.findByPk(id)
+            if(!order) return res.status(404).json({message: "Order not found"})
+            const order_status = order.status
+            if(order_status !== "pending") return res.status(400).json({message: "Couldn't update a not pending order"})
             const order_item = await order_item_model.findOne({
                 where: {
                     order_id: id,
                     id: itemId
                 }
             })
-            if(!order_item) return res.status(404).json({message: "Order not found"})
+            if(!order_item) return res.status(404).json({message: "Order item not found"})
             order_item.update({quantity})
             res.status(200).json({
                 message: "Order item quantity updated successfully",
@@ -211,5 +216,32 @@ export const updateQuantity = (models) => {
 }
 
 export const deleteItem = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const { id, itemId } = req.params
+        const order_item_model = models['Order_item']
+        const order_model = models['Order']
+        try {
+            const order = await order_model.findByPk(id)
+            if(!order) return res.status(404).json({message: "Order not found"})
+            const order_status = order.status
+            if(order_status !== "pending") return res.status(400).json({message: "Couldn't delete a not pending order"})
+            const order_item = await order_item_model.findOne({
+                where: {
+                    order_id: id,
+                    id: itemId
+                }
+            })
+            if(!order_item) return res.status(404).json({message: "Order item not found"})
+            const deleted = order_item.destroy()
+            res.status(203).json({
+                message: "Item deleted successfully",
+                item: deleted
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't delete the item",
+                error: error.message || error
+            })
+        }
+    }
 }
