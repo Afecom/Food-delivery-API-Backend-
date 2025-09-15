@@ -25,7 +25,7 @@ export default (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: "Order",
+                model: "Orders",
                 key: "id"
             }
         },
@@ -33,7 +33,7 @@ export default (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: "menu_item",
+                model: "menu_items",
                 key: "id"
             }
         },

@@ -29,7 +29,7 @@ export default (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: "Restaurant",
+                model: "Restaurants",
                 key: "id"
             }
         },

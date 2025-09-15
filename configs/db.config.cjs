@@ -13,6 +13,11 @@ module.exports = {
         dialect: "postgres"
     },
     test: {
-        dialect: "sqlite"
+        dialect: "sqlite",
+        storage: ":memory:",
+        logging: false,
+        define: {
+            timestamps: false
+        }
     },
 }

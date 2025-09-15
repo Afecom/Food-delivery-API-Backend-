@@ -13,14 +13,14 @@ export const createOrder = (models) => {
             })
             const order_items = await Promise.all(
                 items.map(item => {
-                    order_item_model.create({
+                    return order_item_model.create({
                         order_id: order.id,
                         menu_item_id: item.menu_item_id,
                         quantity: item.quantity
                     })
                 })
             )
-            res.status(200).json({
+            res.status(201).json({
                 message: "Order created successfully",
                 order,
                 order_items
@@ -30,6 +30,7 @@ export const createOrder = (models) => {
                 message: "Couldn't create an order",
                 error: error.message || error
             })
+            console.log(error)
         }
     }
 }

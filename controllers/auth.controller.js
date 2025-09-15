@@ -18,7 +18,7 @@ export const signUp = (models) => {
             const {password: pwd, ...rstUser} = userObj
             res.status(201).json({
                 message: "User created Successfully",
-                User: rstUser
+                user: rstUser
             })
         } catch (error) {
             res.status(400).json({
