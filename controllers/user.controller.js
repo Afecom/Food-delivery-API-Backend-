@@ -68,9 +68,11 @@ export const update_user = (models) => {
             const user = await user_model.findByPk(id)
             if(!user) return res.status(404).json({message: "User not found with the ID provided"})
             await user.update(updates)
+            const user_obj = user.toJSON()
+            const {password: pwd, ...rst_user} = user_obj
             res.status(201).json({
                 message: "User updated successfully",
-                user: user
+                user: rst_user
             })
         } catch (error) {
             res.status(500).json({
