@@ -9,6 +9,7 @@ import userRouter from "./users.route.js";
 import restaurantRouter from "./restaurants.route.js";
 import orderRouter from "./orders.route.js";
 import menuItemRouter from "./menuItem.route.js";
+import address_router from "./address.route.js";
 
 const indexRouter = Router()
 
@@ -17,5 +18,6 @@ indexRouter.use('/users', userRouter(devModel))
 indexRouter.use('/restaurants', restaurantRouter(devModel))
 indexRouter.use('/orders', orderRouter(devModel))
 indexRouter.use('/menu', menuItemRouter(devModel))
+indexRouter.use('/address', address_router(devModel))
 
 export default indexRouter
