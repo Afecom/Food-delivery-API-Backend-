@@ -5,8 +5,6 @@ import initModel from '../../models/index.model.js'
 import { createOrder } from '../../controllers/order.controller.js'
 
 const models = initModel(testDbInstance)
-const order_model = models['Order']
-const order_item_model = models['Order_item']
 const user_model = models['User']
 const restaurant_model = models['Restaurant']
 const menu_item_model = models['Menu_item']
@@ -62,8 +60,9 @@ describe("Order creation", () => {
 
         const order = res.body.order
         const order_item = res.body.order_items[0]
+        const message = res.body.message
 
-        expect(res.body).toHaveProperty('message')
+        expect(message).toBe('Order created successfully')
         expect(order.user_id).toBe(mock_order_data.user_id)
         expect(order.restaurant_id).toBe(mock_order_data.restaurant_id)
         expect(order_item.menu_item_id).toBe(mock_order_data.items[0].menu_item_id)

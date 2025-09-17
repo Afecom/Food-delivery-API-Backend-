@@ -26,7 +26,6 @@ export const signUp = (models) => {
                 error: error.message || error
             })
         }
-
     }
 } 
 export const login = (models) => {

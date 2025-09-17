@@ -10,7 +10,8 @@
     "migrate": "npx sequelize-cli db:migrate",
     "migration": "npx sequelize-cli migration:generate --name",
     "test:user": "node --experimental-vm-modules node_modules/.bin/jest tests/unit/user_registration.test.js",
-    "test:order": "node --experimental-vm-modules node_modules/.bin/jest tests/unit/order_creation.test.js"
+    "test:order": "node --experimental-vm-modules node_modules/.bin/jest tests/unit/order_creation.test.js",
+    "test:register-order": "node --experimental-vm-modules node_modules/.bin/jest tests/integration/register-login-order.test.js --detectOpenHandles"
   },
   "repository": {
     "type": "git",
