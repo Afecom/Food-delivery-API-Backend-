@@ -70,14 +70,13 @@ export const get_user_address = (models) => {
             if(user_role === "Customer" && id !== logged_user_id) return res.status(400).json({message: "Please send the correct id of the customer"})
             const user_address = await address_model.findAll({
                 where: { user_id: id },
-                include: {model: user_model, attributes: {exclude: "password"}, as: "user"}
+                include: {model: user_model, attributes: {exclude: "password"}, as: "user"},
+                attributes: {exclude: ['restaurant_id']}
             })
             if(!user_address) return res.status(404).json({message: "an address for the user is not found"})
-            const address_obj = user_address.toJSON()
-            const {restaurant_id, ...rst_address} = address_obj
             return res.status(200).json({
                 message: "Address successfully fetched for the user",
-                address: rst_address
+                address: user_address
             })
         } catch (error) {
             res.status(500).json({
@@ -114,7 +113,42 @@ export const get_restaurant_address = (models) => {
 }
 
 export const update_address = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const id = req.params.id
+        const body = req.body
+        const address_model = models['Address']
+        const { name, location } = body
+        const access_token = req.headers.authorization.split(" ")[1]
+        const token = verify_token(access_token, "access")
+        if(!token) return res.status(401).json({message: "Invalid token"})
+        const logged_user_id = token.user_id
+        const user_role = token.user_role
+        try {
+            const address = await address_model.findByPk(id)
+            if(user_role === "Customer" && address.restaurant_id) return res.status(403).json({message: "A restaurant address can only be updated by an admin"})
+            if(user_role === "Customer" && address.user_id !== logged_user_id) return res.status(403).json({message: "A customer can only update his/her own address i.e(please send the correct user id of the customer)"})
+            await address.update(body)
+            if(address.restaurant_id){
+                const {user_id, ...rst_address} = address.toJSON()
+                res.status(200).json({
+                    message: "Restaurant address updated successfully",
+                    address: rst_address
+                })
+            }
+            else if(address.user_id){
+                const {restaurant_id, ...rst_address} = address.toJSON()
+                res.status(200).json({
+                    message: "User address updated successfully",
+                    address: rst_address
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't update the address",
+                error: error.message || error
+            })
+        }
+    }
 }
 
 export const delete_address = (models) => {
