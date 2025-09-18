@@ -1,5 +1,5 @@
 import { createRestaurant, listRestaurants, listRestaurantsById, updateRestaurant, deleteRestaurant, createMenuItem, listMenuItem } from '../controllers/restaurant.controller.js'
-import { create_restaurant_address } from '../controllers/address.controller.js'
+import { create_restaurant_address, get_restaurant_address} from '../controllers/address.controller.js'
 import { isAuthorized } from '../middlewares/auth.middleware.js'
 import redis_middleware from '../middlewares/redis.middleware.js'
 import { Router } from 'express'
@@ -16,6 +16,7 @@ const restaurantRouter = (models) => {
     router.post('/:id/menu', admin_auth, createMenuItem(models))
     router.get('/:id/menu', listMenuItem(models))
     router.post('/:id/address', create_restaurant_address(models))
+    router.get('/:id/address', get_restaurant_address(models))
 
     return router
 }
