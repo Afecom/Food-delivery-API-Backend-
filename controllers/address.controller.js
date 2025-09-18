@@ -125,6 +125,7 @@ export const update_address = (models) => {
         const user_role = token.user_role
         try {
             const address = await address_model.findByPk(id)
+            if(!address) return res.status(404).json({message: "Address not found"})
             if(user_role === "Customer" && address.restaurant_id) return res.status(403).json({message: "A restaurant address can only be updated by an admin"})
             if(user_role === "Customer" && address.user_id !== logged_user_id) return res.status(403).json({message: "A customer can only update his/her own address i.e(please send the correct user id of the customer)"})
             await address.update(body)
@@ -152,5 +153,28 @@ export const update_address = (models) => {
 }
 
 export const delete_address = (models) => {
-    return async (req, res) => {}
+    return async (req, res) => {
+        const id = req.params.id
+        const address_model = models['Address']
+        const access_token = req.headers.authorization.split(" ")[1]
+        const token = verify_token(access_token, "access")
+        if(!token) return res.status(401).json({message: "Invalid token"})
+        const logged_user_id = token.user_id
+        const user_role = token.user_role
+        try {
+            const address = await address_model.findByPk(id)
+            if(!address) return res.status(404).json({message: "Address not found"})
+            if(user_role === "Customer" && address.restaurant_id) return res.status(403).json({message: "A restaurant address can only be deleted by an admin"})
+            if(user_role === "Customer" && address.user_id !== logged_user_id) return res.status(403).json({message: "A customer can only delete his/her own address i.e(please send the correct user id of the customer)"})
+            await address.destroy()
+            res.status(203).json({
+                message: "Address deleted successfully"
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Couldn't delete the address",
+                error: error.message || error
+            })
+        }
+    }
 }
