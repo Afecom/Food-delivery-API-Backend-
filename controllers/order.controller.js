@@ -166,11 +166,13 @@ export const getOrderItem = (models) => {
     return async (req, res) => {
         const id = req.params.id
         const order_item_model = models['Order_item']
+        const menu_item_model = models['Menu_item']
         try {
             const order_items = await order_item_model.findAll({
-                where: { order_id: id }
+                where: { order_id: id },
+                include:{model: menu_item_model, as: "menu_item"}
             })
-            if(!order_items) return res.status(404).json({message: "order item not found"})
+            if(order_items.length === 0) return res.status(404).json({message: "order item not found"})
             res.status(200).json({
                 message: "Order items fetched successfully",
                 order_items

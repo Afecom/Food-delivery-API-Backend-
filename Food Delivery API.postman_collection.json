@@ -1,0 +1,1000 @@
+{
+	"info": {
+		"_postman_id": "58c38ccd-ca30-4f01-9fab-619b3205a5cc",
+		"name": "Food Delivery API",
+		"description": "This Postman collection provides endpoints to interact with the **Food Delivery API**.  \nIt covers user authentication, restaurant management, menu items, orders, and addresses.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46503094",
+		"_collection_link": "https://nurukamil.postman.co/workspace/Nuru-Kamil's-Workspace~4f9c42c9-3b8c-49c8-8f02-7099c70f5c9a/collection/46503094-58c38ccd-ca30-4f01-9fab-619b3205a5cc?action=share&source=collection_link&creator=46503094"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Abebe\",\n    \"last_name\": \"Kebede\",\n    \"email\": \"abekebe123@example.com\",\n    \"password\": \"Abekebe@123\"\n    // \"role\": \"Admin\" the default value for role is Customer but can be \"Admin\" too for admin priviledges\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"abekebe123@example.com\",\n    \"password\": \"Abekebe@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users (admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by ID (admin or same user)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user by ID (admin or same user)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"last_name\": \"Wick\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by ID (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user address (admin can get all, customer their own)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxODg3MzUsImV4cCI6MTc1ODE4OTYzNX0.ggp1FvacFhtNimzpjY_XPsKt0iEE39BxSuBlFL463XE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/19/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"19",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user address (admin has full privledge, customer creates their own)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxODg3MzUsImV4cCI6MTc1ODE4OTYzNX0.ggp1FvacFhtNimzpjY_XPsKt0iEE39BxSuBlFL463XE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"home\",\n    \"location\": \"test location\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/19/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"19",
+								"address"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints related to USERS"
+		},
+		{
+			"name": "Restaurants",
+			"item": [
+				{
+					"name": "Create Restaurant (admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Testaurant\"\n    // each restaurant name must be different\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List restaurants",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List details of restaurant",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurants/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update restaurant by ID (admin)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testaurant\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurants/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Restaurant (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurants/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create restaurant address (admin only)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurants/7/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"7",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get restaurant address",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "Requests related to Restaurants"
+		},
+		{
+			"name": "Menu items",
+			"item": [
+				{
+					"name": "Create a menu item for a restaurant (admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testurger\",\n    \"price\": 499\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurants/7/menu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"7",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List menus for a restaurant",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/restaurants/7/menu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"restaurants",
+								"7",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get details of a menu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/menu/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"menu",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a menu item (admin)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 699\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/menu/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"menu",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete menu item (admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/menu/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"menu",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Requestes related to manu items"
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order (customer only)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOSwidXNlcl9yb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3NTgxMjUxMzIsImV4cCI6MTc1ODEyNjAzMn0.7uC-Kv6gBJb3YhIrfPK4xjCPLXfavbS1xGmXlxDDZrE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 19,\n    \"restaurant_id\": 7,\n    \"items\": [\n        {\"menu_item_id\": 5, \"quantity\": 3}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List orders (Customer sees their own admin sees all)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMjU0NjAsImV4cCI6MTc1ODEyNjM2MH0.xV4WUPkVU3ERzmaEY0QTV28JG5MZDMVthnGjaKkYItI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get order details by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMjU0NjAsImV4cCI6MTc1ODEyNjM2MH0.xV4WUPkVU3ERzmaEY0QTV28JG5MZDMVthnGjaKkYItI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update order status (admin)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMjU0NjAsImV4cCI6MTc1ODEyNjM2MH0.xV4WUPkVU3ERzmaEY0QTV28JG5MZDMVthnGjaKkYItI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"preparing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders/8/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"8",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMjU0NjAsImV4cCI6MTc1ODEyNjM2MH0.xV4WUPkVU3ERzmaEY0QTV28JG5MZDMVthnGjaKkYItI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"preparing\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Contains requests related to orders."
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "Update user or restaurant address",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOSwidXNlcl9yb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3NTgxOTQyNjAsImV4cCI6MTc1ODE5NTE2MH0.-dUz3-qYzUVcHn6ZeGWdYLmbXvCBl6z5c9VUyQUZ_WY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/address/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"address",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user or restaurant address",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains requests related to addressed"
+		},
+		{
+			"name": "Order Items",
+			"item": [
+				{
+					"name": "Get menu items of an order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders/8/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"8",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update quantity of an item",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOSwidXNlcl9yb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3NTgyMDIzODksImV4cCI6MTc1ODIwMzI4OX0.2xp7J5mvnqZL39ynE1UF3UDO9fv4TzXlMGyTADSb99o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 7\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders/8/items/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"8",
+								"items",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an item from an order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOSwidXNlcl9yb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3NTgyMDIzODksImV4cCI6MTc1ODIwMzI4OX0.2xp7J5mvnqZL39ynE1UF3UDO9fv4TzXlMGyTADSb99o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/orders/8/items/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"8",
+								"items",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains requests related to order items"
+		}
+	],
+	"auth": {
+		"type": "jwt",
+		"jwt": [
+			{
+				"key": "algorithm",
+				"value": "HS256",
+				"type": "string"
+			},
+			{
+				"key": "isSecretBase64Encoded",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "payload",
+				"value": "{}",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "headerPrefix",
+				"value": "Bearer",
+				"type": "string"
+			},
+			{
+				"key": "queryParamKey",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "header",
+				"value": "{}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
