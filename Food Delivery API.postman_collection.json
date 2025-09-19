@@ -76,13 +76,6 @@
 					"name": "Get all users (admin)",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/users",
 							"protocol": "http",
@@ -103,13 +96,6 @@
 					"name": "Get user by ID (admin or same user)",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/users/19",
 							"protocol": "http",
@@ -131,13 +117,6 @@
 					"name": "Update user by ID (admin or same user)",
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"last_name\": \"Wick\"\n}",
@@ -168,13 +147,6 @@
 					"name": "Delete user by ID (admin)",
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/users/19",
 							"protocol": "http",
@@ -196,13 +168,6 @@
 					"name": "Get user address (admin can get all, customer their own)",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxODg3MzUsImV4cCI6MTc1ODE4OTYzNX0.ggp1FvacFhtNimzpjY_XPsKt0iEE39BxSuBlFL463XE",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/users/19/address",
 							"protocol": "http",
@@ -225,13 +190,6 @@
 					"name": "create user address (admin has full privledge, customer creates their own)",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxODg3MzUsImV4cCI6MTc1ODE4OTYzNX0.ggp1FvacFhtNimzpjY_XPsKt0iEE39BxSuBlFL463XE",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"home\",\n    \"location\": \"test location\"\n}",
@@ -269,13 +227,6 @@
 					"name": "Create Restaurant (admin)",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"Testaurant\"\n    // each restaurant name must be different\n}",
@@ -305,14 +256,6 @@
 					"name": "List restaurants",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
-								"type": "text",
-								"disabled": true
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/restaurants",
 							"protocol": "http",
@@ -333,14 +276,6 @@
 					"name": "List details of restaurant",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDgzMjcsImV4cCI6MTc1ODEwOTIyN30.vCDqrDQe7aNv7E5MlfJPPTsTkp5Ohq2AKU0R2BEav4s",
-								"type": "text",
-								"disabled": true
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/restaurants/7",
 							"protocol": "http",
@@ -362,13 +297,6 @@
 					"name": "Update restaurant by ID (admin)",
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"testaurant\"\n}",
@@ -399,13 +327,6 @@
 					"name": "Delete Restaurant (admin)",
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/restaurants/7",
 							"protocol": "http",
@@ -464,13 +385,6 @@
 					"name": "Create a menu item for a restaurant (admin)",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"testurger\",\n    \"price\": 499\n}",
@@ -502,14 +416,6 @@
 					"name": "List menus for a restaurant",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
-								"type": "text",
-								"disabled": true
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/restaurants/7/menu",
 							"protocol": "http",
@@ -554,13 +460,6 @@
 					"name": "Update a menu item (admin)",
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"price\": 699\n}",
@@ -591,13 +490,6 @@
 					"name": "Delete menu item (admin)",
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMDk0NTIsImV4cCI6MTc1ODExMDM1Mn0.3kF4OTKoW2dueJ-Sal6s4-G38ik4KkS1QPvOeY5laKo",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/menu/5",
 							"protocol": "http",
@@ -625,13 +517,6 @@
 					"name": "Create Order (customer only)",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOSwidXNlcl9yb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3NTgxMjUxMzIsImV4cCI6MTc1ODEyNjAzMn0.7uC-Kv6gBJb3YhIrfPK4xjCPLXfavbS1xGmXlxDDZrE",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"user_id\": 19,\n    \"restaurant_id\": 7,\n    \"items\": [\n        {\"menu_item_id\": 5, \"quantity\": 3}\n    ]\n}",
@@ -661,13 +546,6 @@
 					"name": "List orders (Customer sees their own admin sees all)",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMjU0NjAsImV4cCI6MTc1ODEyNjM2MH0.xV4WUPkVU3ERzmaEY0QTV28JG5MZDMVthnGjaKkYItI",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/orders",
 							"protocol": "http",
@@ -688,13 +566,6 @@
 					"name": "Get order details by ID",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMjU0NjAsImV4cCI6MTc1ODEyNjM2MH0.xV4WUPkVU3ERzmaEY0QTV28JG5MZDMVthnGjaKkYItI",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/orders/8",
 							"protocol": "http",
@@ -716,13 +587,6 @@
 					"name": "Update order status (admin)",
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMjU0NjAsImV4cCI6MTc1ODEyNjM2MH0.xV4WUPkVU3ERzmaEY0QTV28JG5MZDMVthnGjaKkYItI",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"status\": \"preparing\"\n}",
@@ -754,13 +618,6 @@
 					"name": "New Request",
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMCwidXNlcl9yb2xlIjoiQWRtaW4iLCJpYXQiOjE3NTgxMjU0NjAsImV4cCI6MTc1ODEyNjM2MH0.xV4WUPkVU3ERzmaEY0QTV28JG5MZDMVthnGjaKkYItI",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"status\": \"preparing\"\n}"
@@ -792,13 +649,6 @@
 					"name": "Update user or restaurant address",
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOSwidXNlcl9yb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3NTgxOTQyNjAsImV4cCI6MTc1ODE5NTE2MH0.-dUz3-qYzUVcHn6ZeGWdYLmbXvCBl6z5c9VUyQUZ_WY",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"test\"\n}",
@@ -866,13 +716,6 @@
 					"name": "Update quantity of an item",
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOSwidXNlcl9yb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3NTgyMDIzODksImV4cCI6MTc1ODIwMzI4OX0.2xp7J5mvnqZL39ynE1UF3UDO9fv4TzXlMGyTADSb99o",
-								"type": "text"
-							}
-						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"quantity\": 7\n}",
@@ -905,13 +748,6 @@
 					"name": "Delete an item from an order",
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOSwidXNlcl9yb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3NTgyMDIzODksImV4cCI6MTc1ODIwMzI4OX0.2xp7J5mvnqZL39ynE1UF3UDO9fv4TzXlMGyTADSb99o",
-								"type": "text"
-							}
-						],
 						"url": {
 							"raw": "http://localhost:3000/api/v1/orders/8/items/5",
 							"protocol": "http",
@@ -960,7 +796,7 @@
 			},
 			{
 				"key": "headerPrefix",
-				"value": "Bearer",
+				"value": "",
 				"type": "string"
 			},
 			{
